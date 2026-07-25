@@ -29,7 +29,7 @@ const apiDevPlugin = () => ({
           };
 
           try {
-            const handler = await import('./api/analyze.ts');
+            const handler = await server.ssrLoadModule('/api/analyze.ts');
             await handler.default(req, res);
           } catch (err) {
             console.error('Local API Handler Error:', err);
