@@ -25,7 +25,7 @@ export const AnalysisLoader: React.FC<AnalysisLoaderProps> = ({ imageFile }) => 
       setStage((prev) => Math.min(prev + 1, stages.length - 1));
     }, 1200);
     return () => clearInterval(interval);
-  }, []);
+  }, [stages.length]);
 
   if (!imageUrl) return null;
 

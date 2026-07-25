@@ -1,6 +1,6 @@
 import React from 'react';
 import type { ScanAnalysis } from '../types/analysis';
-import { Scan, Eye, AlertTriangle, Check, HelpCircle, ShieldAlert, X } from 'lucide-react';
+import { Eye, AlertTriangle, Check, HelpCircle, ShieldAlert, X } from 'lucide-react';
 
 interface AnalysisResultProps {
   result: ScanAnalysis;
@@ -10,7 +10,6 @@ interface AnalysisResultProps {
 
 export const AnalysisResult: React.FC<AnalysisResultProps> = ({ result, onScanAnother, onRetake }) => {
   const isVerified = result.status === 'identified';
-  const isPartial = result.status === 'partial' || result.status === 'conflict';
   const isUnverified = result.status === 'unverified';
 
   if (isUnverified) {
