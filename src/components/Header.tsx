@@ -14,10 +14,6 @@ export const Header: React.FC = () => {
           <Scan className="w-5 h-5" aria-hidden="true" />
           <span>TriggerLens</span>
         </Link>
-        <div className="text-[10px] sm:text-xs text-zinc-600 font-semibold tracking-wide uppercase px-3 py-1.5 border border-zinc-200 rounded-full bg-zinc-50 flex items-center gap-1.5 shadow-sm" role="status" aria-label="Powered by Gemini">
-          <span className="text-zinc-400" aria-hidden="true">✦</span>
-          Powered by Gemini
-        </div>
       </nav>
     </header>
   );

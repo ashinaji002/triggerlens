@@ -74,7 +74,7 @@ export const Home: React.FC = () => {
       </div>
 
       {/* Trust Strip */}
-      <div className="w-full bg-zinc-50/50 border border-zinc-100 rounded-[20px] p-6 md:p-8 flex flex-col md:flex-row gap-8 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-zinc-200/60 mb-12">
+      <div className="hidden md:flex w-full bg-zinc-50/50 border border-zinc-100 rounded-[20px] p-6 md:p-8 flex-col md:flex-row gap-8 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-zinc-200/60 mb-12">
         <div className="flex-1 flex flex-col items-start text-left md:px-4 first:px-0 pt-4 md:pt-0 first:pt-0">
           <Lock className="w-5 h-5 text-zinc-400 mb-3" aria-hidden="true" />
           <h2 className="font-semibold text-[15px] text-zinc-900 mb-1.5">Your privacy matters</h2>

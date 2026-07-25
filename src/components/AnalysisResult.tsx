@@ -16,33 +16,33 @@ export const AnalysisResult: React.FC<AnalysisResultProps> = ({ result, onScanAn
     return (
       <div className="flex flex-col h-full w-full mx-auto">
         <div className="flex flex-col items-center text-center py-10" role="status" aria-live="polite">
-          <div className="w-10 h-10 bg-zinc-100 rounded-full flex items-center justify-center mb-4">
-            <HelpCircle className="w-5 h-5 text-zinc-500" aria-hidden="true" />
-          </div>
-          <h1 className="text-[11px] font-bold text-zinc-500 mb-6 tracking-[0.15em] uppercase">
+          <h1 className="text-[12px] font-bold text-zinc-500 mb-6 tracking-[0.15em] uppercase flex items-center gap-2">
+            <HelpCircle className="w-4 h-4" aria-hidden="true" />
             Can't Verify
           </h1>
-          <p className="text-[20px] md:text-[24px] font-semibold text-zinc-900 leading-snug max-w-[280px] mb-8">
-            Not enough visible information was found to identify this product.
+          <p className="text-[20px] md:text-[24px] font-semibold text-zinc-900 leading-snug max-w-[340px] mb-6">
+            We couldn't reliably identify this medicine from the visible information.
           </p>
           
-          <div className="bg-zinc-50 border border-zinc-100 rounded-2xl p-6 text-left w-full max-w-sm mx-auto mb-10">
-            <span className="text-sm font-semibold text-zinc-800 block mb-3">Try scanning:</span>
-            <ul className="text-sm text-zinc-600 space-y-2">
-              <li className="flex items-center gap-2"><div className="w-1 h-1 rounded-full bg-zinc-400"/> Product name</li>
-              <li className="flex items-center gap-2"><div className="w-1 h-1 rounded-full bg-zinc-400"/> Ingredient list</li>
-              <li className="flex items-center gap-2"><div className="w-1 h-1 rounded-full bg-zinc-400"/> Strength information</li>
-              <li className="flex items-center gap-2"><div className="w-1 h-1 rounded-full bg-zinc-400"/> Front or back label</li>
-            </ul>
+          <div className="bg-zinc-50 border border-zinc-100 rounded-2xl p-6 text-center w-full max-w-sm mx-auto mb-10">
+            <p className="text-[15px] text-zinc-600">
+              Try again with the product name, strength and label clearly visible.
+            </p>
           </div>
         </div>
         
-        <div className="flex flex-col mt-auto w-full max-w-sm mx-auto">
+        <div className="flex flex-col sm:flex-row gap-3 mt-auto w-full max-w-md mx-auto">
           <button 
             onClick={onRetake}
-            className="w-full bg-zinc-900 text-white py-3.5 px-6 rounded-xl font-semibold flex items-center justify-center hover:bg-zinc-800 transition-colors active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
+            className="flex-1 bg-zinc-900 text-white py-3.5 px-6 rounded-xl font-semibold flex items-center justify-center hover:bg-zinc-800 transition-colors active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
           >
-            Scan Again
+            Retake Photo
+          </button>
+          <button 
+            onClick={onScanAnother}
+            className="flex-1 bg-white text-zinc-700 border border-zinc-200 py-3.5 px-6 rounded-xl font-semibold flex items-center justify-center hover:bg-zinc-50 transition-colors active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
+          >
+            Choose Another Image
           </button>
         </div>
       </div>

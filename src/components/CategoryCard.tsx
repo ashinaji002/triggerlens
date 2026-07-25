@@ -61,21 +61,21 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
   return (
     <button 
       onClick={onClick}
-      className={`group w-full text-left bg-white border ${baseCardBorder} rounded-[24px] p-7 md:p-8 flex flex-col justify-between transition-all duration-250 ease-out hover:-translate-y-[2px] hover:shadow-md hover:border-zinc-300 min-h-[230px] sm:min-h-[240px] relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2`}
+      className={`group w-full text-left bg-white border ${baseCardBorder} rounded-[20px] md:rounded-[24px] p-5 md:p-8 flex flex-col justify-between transition-all duration-250 ease-out hover:-translate-y-[2px] hover:shadow-md hover:border-zinc-300 min-h-[160px] md:min-h-[240px] relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2`}
       aria-label={`Scan ${title}`}
     >
-      <div className="flex items-start justify-between w-full mb-6">
-        <div className={`p-4 rounded-2xl transition-colors duration-250 border ${themeStyles.border} ${themeStyles.iconBg}`}>
-          <Icon className={`w-7 h-7 ${themeStyles.iconColor}`} aria-hidden="true" />
+      <div className="flex items-start justify-between w-full mb-3 md:mb-6">
+        <div className={`p-3 md:p-4 rounded-2xl transition-colors duration-250 border ${themeStyles.border} ${themeStyles.iconBg}`}>
+          <Icon className={`w-5 h-5 md:w-7 md:h-7 ${themeStyles.iconColor}`} aria-hidden="true" />
         </div>
         <div className="w-8 h-8 rounded-full border border-zinc-100 bg-zinc-50 flex items-center justify-center group-hover:bg-zinc-100 transition-colors duration-250 shrink-0">
           <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-600 group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-all duration-250" aria-hidden="true" />
         </div>
       </div>
       
-      <div className="mb-6 flex-1">
-        <h3 className="font-bold text-zinc-900 text-2xl mb-2 tracking-tight">{title}</h3>
-        <p className="text-zinc-500 text-[15px] leading-relaxed pr-2">{description}</p>
+      <div className="mb-4 md:mb-6 flex-1">
+        <h3 className="font-bold text-zinc-900 text-lg md:text-2xl mb-1 md:mb-2 tracking-tight">{title}</h3>
+        <p className="text-zinc-500 text-sm md:text-[15px] leading-relaxed pr-2">{description}</p>
       </div>
 
       <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-zinc-50/80 border border-zinc-100 rounded-lg self-start mt-auto">
