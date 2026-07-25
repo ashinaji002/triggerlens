@@ -34,7 +34,7 @@ export default async function handler(req: any, res: any) {
     return;
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
   if (!apiKey) {
     console.error('GEMINI_API_KEY is not configured on the server.');
     return res.status(500).json({ error: 'Server configuration error' });

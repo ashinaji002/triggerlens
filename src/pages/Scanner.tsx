@@ -38,8 +38,8 @@ export const Scanner: React.FC = () => {
       return;
     }
 
-    // Validate file size (e.g. 5MB)
-    if (file.size > 5 * 1024 * 1024) {
+    // Validate file size (e.g. 3MB max to prevent Vercel 4.5MB payload limit when Base64 encoded)
+    if (file.size > 3 * 1024 * 1024) {
       setErrorState(true);
       return;
     }
