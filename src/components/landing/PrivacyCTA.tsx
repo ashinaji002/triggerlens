@@ -12,7 +12,7 @@ export const PrivacyCTA: React.FC = () => {
         {/* Left: Privacy */}
         <div className="flex-1">
           <div className="w-12 h-12 bg-white border border-border rounded-2xl flex items-center justify-center mb-6 shadow-sm">
-            <Lock className="w-6 h-6 text-zinc-700" />
+            <Lock className="w-6 h-6 text-zinc-700" aria-hidden="true" />
           </div>
           <h2 className="text-3xl font-bold text-zinc-900 tracking-tight mb-4">
             Your privacy <br className="hidden sm:block" />
@@ -33,11 +33,12 @@ export const PrivacyCTA: React.FC = () => {
           </p>
           <button 
             onClick={() => navigate('/scan')}
-            className="group w-full md:w-auto flex items-center justify-center gap-3 bg-zinc-900 hover:bg-zinc-800 text-white px-8 py-4 rounded-full font-semibold transition-all shadow-sm"
+            className="group w-full md:w-auto flex items-center justify-center gap-3 bg-zinc-900 hover:bg-zinc-800 text-white px-8 py-4 rounded-full font-semibold transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
+            aria-label="Start Scanning Now"
           >
-            <Camera className="w-5 h-5" />
+            <Camera className="w-5 h-5" aria-hidden="true" />
             Start Scanning Now
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
           </button>
         </div>
 

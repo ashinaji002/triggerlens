@@ -14,23 +14,23 @@ export const AudienceStrip: React.FC = () => {
       <div className="w-full bg-white border border-border rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-border">
         
         <div className="flex-1 p-6 flex flex-col items-center justify-center text-center">
-          <User className="w-6 h-6 text-zinc-400 mb-3" />
-          <span className="text-sm font-semibold text-zinc-800">People in recovery</span>
+          <User className="w-6 h-6 text-zinc-400 mb-3" aria-hidden="true" />
+          <h3 className="text-sm font-semibold text-zinc-800">People in recovery</h3>
         </div>
         
         <div className="flex-1 p-6 flex flex-col items-center justify-center text-center">
-          <Users className="w-6 h-6 text-zinc-400 mb-3" />
-          <span className="text-sm font-semibold text-zinc-800">Caregivers & family</span>
+          <Users className="w-6 h-6 text-zinc-400 mb-3" aria-hidden="true" />
+          <h3 className="text-sm font-semibold text-zinc-800">Caregivers & family</h3>
         </div>
         
         <div className="flex-1 p-6 flex flex-col items-center justify-center text-center">
-          <Heart className="w-6 h-6 text-zinc-400 mb-3" />
-          <span className="text-sm font-semibold text-zinc-800">Health-conscious users</span>
+          <Heart className="w-6 h-6 text-zinc-400 mb-3" aria-hidden="true" />
+          <h3 className="text-sm font-semibold text-zinc-800">Health-conscious users</h3>
         </div>
         
         <div className="flex-1 p-6 flex flex-col items-center justify-center text-center">
-          <HelpCircle className="w-6 h-6 text-zinc-400 mb-3" />
-          <span className="text-sm font-semibold text-zinc-800">Anyone unsure about a substance</span>
+          <HelpCircle className="w-6 h-6 text-zinc-400 mb-3" aria-hidden="true" />
+          <h3 className="text-sm font-semibold text-zinc-800">Anyone unsure about a substance</h3>
         </div>
 
       </div>

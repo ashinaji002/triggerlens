@@ -8,7 +8,7 @@ export const LandingFooter: React.FC = () => {
         
         {/* Left */}
         <div className="flex items-center gap-2 text-zinc-900 font-semibold tracking-tight text-sm">
-          <Scan className="w-4 h-4" />
+          <Scan className="w-4 h-4" aria-hidden="true" />
           <span>TriggerLens</span>
         </div>
 

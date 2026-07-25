@@ -19,6 +19,7 @@ export async function analyzeImage(file: File, category: ScanCategory): Promise<
 Extract the visible information only. Do NOT hallucinate.
 If you cannot reliably identify the product from its visible features or label, set status to 'unverified'.
 If the product is identified successfully, set status to 'identified'.
+If you can extract some visible information (e.g., product type or ingredients) but cannot confidently identify the exact product name, set status to 'partial'.
 If there are potential conflicts (e.g., alcohol in a medicine, or if the product itself is generally a hazard like tobacco/cigarettes), set status to 'conflict'.
 Return a JSON object with the specified schema. For 'evidence', provide specific visual features or text from the image that led to this conclusion (e.g. "Cigarette filter and tobacco visible", "Brand name X visible").`;
 
@@ -79,7 +80,7 @@ function getResponseSchema(): Schema {
         properties: {
             status: {
                 type: Type.STRING,
-                enum: ['identified', 'unverified', 'conflict']
+                enum: ['identified', 'unverified', 'conflict', 'partial']
             },
             category: {
                 type: Type.STRING,

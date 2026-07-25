@@ -32,7 +32,7 @@ export const Home: React.FC = () => {
         {/* Tiny Scanner Separator */}
         <div className="flex items-center justify-center w-full max-w-[200px] gap-3 opacity-60">
           <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-zinc-200" />
-          <ScanLine className="w-4 h-4 text-zinc-400" />
+          <ScanLine className="w-4 h-4 text-zinc-400" aria-hidden="true" />
           <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-zinc-200" />
         </div>
       </div>
@@ -76,27 +76,27 @@ export const Home: React.FC = () => {
       {/* Trust Strip */}
       <div className="w-full bg-zinc-50/50 border border-zinc-100 rounded-[20px] p-6 md:p-8 flex flex-col md:flex-row gap-8 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-zinc-200/60 mb-12">
         <div className="flex-1 flex flex-col items-start text-left md:px-4 first:px-0 pt-4 md:pt-0 first:pt-0">
-          <Lock className="w-5 h-5 text-zinc-400 mb-3" />
-          <h4 className="font-semibold text-[15px] text-zinc-900 mb-1.5">Your privacy matters</h4>
+          <Lock className="w-5 h-5 text-zinc-400 mb-3" aria-hidden="true" />
+          <h2 className="font-semibold text-[15px] text-zinc-900 mb-1.5">Your privacy matters</h2>
           <p className="text-[13.5px] text-zinc-500 leading-relaxed">Images are analyzed only to identify visible product information.</p>
         </div>
         
         <div className="flex-1 flex flex-col items-start text-left md:px-4 pt-6 md:pt-0">
-          <ShieldCheck className="w-5 h-5 text-zinc-400 mb-3" />
-          <h4 className="font-semibold text-[15px] text-zinc-900 mb-1.5">Evidence first</h4>
+          <ShieldCheck className="w-5 h-5 text-zinc-400 mb-3" aria-hidden="true" />
+          <h2 className="font-semibold text-[15px] text-zinc-900 mb-1.5">Evidence first</h2>
           <p className="text-[13.5px] text-zinc-500 leading-relaxed">Results should reflect information that can actually be identified from the image.</p>
         </div>
 
         <div className="flex-1 flex flex-col items-start text-left md:px-4 pt-6 md:pt-0">
-          <Sparkles className="w-5 h-5 text-zinc-400 mb-3" />
-          <h4 className="font-semibold text-[15px] text-zinc-900 mb-1.5">AI-powered analysis</h4>
+          <Sparkles className="w-5 h-5 text-zinc-400 mb-3" aria-hidden="true" />
+          <h2 className="font-semibold text-[15px] text-zinc-900 mb-1.5">AI-powered analysis</h2>
           <p className="text-[13.5px] text-zinc-500 leading-relaxed">Gemini helps understand information visible on product labels and packaging.</p>
         </div>
       </div>
 
       {/* Bottom Safety Message */}
       <div className="flex items-center justify-center gap-2 text-zinc-400 pb-8">
-        <Shield className="w-3.5 h-3.5" />
+        <Shield className="w-3.5 h-3.5" aria-hidden="true" />
         <span className="text-[12px] md:text-[13px] font-medium">
           TriggerLens is an informational tool and not a substitute for professional medical advice.
         </span>

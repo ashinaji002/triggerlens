@@ -57,12 +57,13 @@ export const Scanner: React.FC = () => {
       <div className="flex items-center gap-3 mb-8">
         <button 
           onClick={() => navigate(-1)}
-          className="p-2 -ml-2 rounded-full hover:bg-zinc-100 transition-colors"
+          className="p-2 -ml-2 rounded-full hover:bg-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
+          aria-label="Back"
         >
-          <ChevronLeft className="w-6 h-6 text-zinc-700" />
+          <ChevronLeft className="w-6 h-6 text-zinc-700" aria-hidden="true" />
         </button>
         <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-100 rounded-full text-zinc-700 font-semibold text-sm capitalize">
-          <CategoryIcon className="w-4 h-4" />
+          <CategoryIcon className="w-4 h-4" aria-hidden="true" />
           {category} Scan
         </div>
       </div>

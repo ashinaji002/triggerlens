@@ -28,30 +28,30 @@ export const Hero: React.FC = () => {
         <div className="flex flex-col sm:flex-row gap-6 mb-12">
           <div className="flex items-start gap-3">
             <div className="mt-0.5 w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center shrink-0">
-              <Scan className="w-4 h-4 text-zinc-700" />
+              <Scan className="w-4 h-4 text-zinc-700" aria-hidden="true" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-zinc-900">Zero typing</h3>
+              <h2 className="text-sm font-bold text-zinc-900">Zero typing</h2>
               <p className="text-xs text-zinc-500 mt-0.5">Camera-first experience</p>
             </div>
           </div>
           
           <div className="flex items-start gap-3">
             <div className="mt-0.5 w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center shrink-0">
-              <Shield className="w-4 h-4 text-zinc-700" />
+              <Shield className="w-4 h-4 text-zinc-700" aria-hidden="true" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-zinc-900">Privacy first</h3>
+              <h2 className="text-sm font-bold text-zinc-900">Privacy first</h2>
               <p className="text-xs text-zinc-500 mt-0.5">Images analyzed securely</p>
             </div>
           </div>
 
           <div className="flex items-start gap-3">
             <div className="mt-0.5 w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center shrink-0">
-              <Sparkles className="w-4 h-4 text-zinc-700" />
+              <Sparkles className="w-4 h-4 text-zinc-700" aria-hidden="true" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-zinc-900">AI powered</h3>
+              <h2 className="text-sm font-bold text-zinc-900">AI powered</h2>
               <p className="text-xs text-zinc-500 mt-0.5">Gemini understands what's visible</p>
             </div>
           </div>
@@ -60,16 +60,17 @@ export const Hero: React.FC = () => {
         {/* CTA */}
         <button 
           onClick={() => navigate('/scan')}
-          className="group flex items-center gap-3 bg-zinc-900 hover:bg-zinc-800 text-white px-8 py-4 rounded-full font-semibold transition-all shadow-sm w-full sm:w-auto justify-center"
+          className="group flex items-center gap-3 bg-zinc-900 hover:bg-zinc-800 text-white px-8 py-4 rounded-full font-semibold transition-all shadow-sm w-full sm:w-auto justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
+          aria-label="Start Scanning Now"
         >
-          <Camera className="w-5 h-5" />
+          <Camera className="w-5 h-5" aria-hidden="true" />
           Start Scanning Now
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
         </button>
       </div>
 
       {/* Right Column: Visual Mockup */}
-      <div className="flex-1 w-full flex justify-center lg:justify-end relative">
+      <div className="hidden md:flex flex-1 w-full justify-center lg:justify-end relative">
         <PhoneScannerMockup />
       </div>
     </section>

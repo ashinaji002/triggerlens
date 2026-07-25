@@ -2,7 +2,7 @@ import React from 'react';
 
 export const PhoneScannerMockup: React.FC = () => {
   return (
-    <div className="relative mx-auto w-full max-w-[260px] aspect-[9/19] bg-zinc-900 rounded-[2.5rem] p-2 shadow-2xl border border-zinc-800 shrink-0">
+    <div className="relative mx-auto w-full max-w-[260px] aspect-[9/19] bg-zinc-900 rounded-[2.5rem] p-2 shadow-2xl border border-zinc-800 shrink-0" aria-hidden="true">
       {/* Outer subtle glow/radial effect placed behind the phone via parent context, but we can also add a subtle inner glow */}
       <div className="absolute -inset-10 bg-zinc-200/20 blur-3xl -z-10 rounded-full" />
       

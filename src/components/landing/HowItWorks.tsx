@@ -45,9 +45,9 @@ export const HowItWorks: React.FC = () => {
             {/* Step */}
             <div className="flex flex-col items-center w-40">
               <div className="w-14 h-14 rounded-full bg-zinc-50 border border-zinc-200 flex items-center justify-center mb-5 shadow-sm">
-                <step.icon className="w-6 h-6 text-zinc-800" />
+                <step.icon className="w-6 h-6 text-zinc-800" aria-hidden="true" />
               </div>
-              <h4 className="font-bold text-zinc-900 mb-2 text-sm">{step.title}</h4>
+              <h3 className="font-bold text-zinc-900 mb-2 text-sm">{step.title}</h3>
               <p className="text-xs text-zinc-500 leading-relaxed max-w-[120px]">
                 {step.desc}
               </p>
@@ -56,14 +56,14 @@ export const HowItWorks: React.FC = () => {
             {/* Arrow (hidden on mobile, shown on md up except after last item) */}
             {idx < steps.length - 1 && (
               <div className="hidden md:flex items-center text-zinc-300">
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-5 h-5" aria-hidden="true" />
               </div>
             )}
             
             {/* Mobile Down Arrow */}
             {idx < steps.length - 1 && (
               <div className="flex md:hidden text-zinc-300 my-2">
-                <ArrowRight className="w-5 h-5 rotate-90" />
+                <ArrowRight className="w-5 h-5 rotate-90" aria-hidden="true" />
               </div>
             )}
           </React.Fragment>

@@ -30,8 +30,8 @@ export const AnalysisLoader: React.FC<AnalysisLoaderProps> = ({ imageFile }) => 
   if (!imageUrl) return null;
 
   return (
-    <div className="flex flex-col items-center gap-8 w-full max-w-md mx-auto">
-      <div className="relative aspect-[3/4] w-full bg-black rounded-3xl overflow-hidden flex items-center justify-center">
+    <div className="flex flex-col items-center gap-8 w-full max-w-md mx-auto" role="status" aria-live="polite">
+      <div className="relative aspect-[3/4] w-full bg-black rounded-3xl overflow-hidden flex items-center justify-center" aria-hidden="true">
         <img 
           src={imageUrl} 
           alt="Analyzing..." 

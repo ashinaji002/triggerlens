@@ -1,4 +1,4 @@
-export type ScanStatus = 'identified' | 'unverified' | 'conflict';
+export type ScanStatus = 'identified' | 'unverified' | 'conflict' | 'partial';
 export type ScanCategory = 'medicine' | 'drink' | 'tobacco' | 'other';
 export type Confidence = 'high' | 'medium' | 'low';
 
