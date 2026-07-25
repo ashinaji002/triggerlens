@@ -31,6 +31,19 @@ export const Scanner: React.FC = () => {
   const CategoryIcon = icons[typedCategory];
 
   const handleImageCaptured = (file: File) => {
+    // Validate file type
+    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    if (!allowedMimeTypes.includes(file.type)) {
+      setErrorState(true);
+      return;
+    }
+
+    // Validate file size (e.g. 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      setErrorState(true);
+      return;
+    }
+
     setImageFile(file);
     setErrorState(false);
   };
@@ -50,16 +63,16 @@ export const Scanner: React.FC = () => {
       setIsAnalyzing(false);
       navigate('/result', { state: { result } });
     } catch (error) {
-      console.error(error);
+      // Do not log raw errors to the console in production
       setIsAnalyzing(false);
       setErrorState(true);
     }
   };
 
   return (
-    <div className="flex flex-col h-full md:h-auto w-full max-w-[1200px] mx-auto px-5 sm:px-6 py-6 md:py-12">
+    <div className="flex flex-col h-full w-full max-w-[1200px] mx-auto px-5 sm:px-6 py-6 md:py-12">
       {/* Top Navigation */}
-      <div className="flex flex-col items-center gap-3 mb-6 md:mb-12 w-full justify-center relative shrink-0">
+      <div className="flex flex-col items-center gap-3 mb-8 md:mb-12 w-full justify-center relative shrink-0">
         <button 
           onClick={() => navigate(-1)}
           className="absolute left-0 top-0 md:top-2 p-2 -ml-2 rounded-full hover:bg-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
@@ -83,108 +96,114 @@ export const Scanner: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-8 lg:gap-10 items-start w-full flex-1">
+      {/* Main Content Layout */}
+      <div className="flex flex-col w-full max-w-full gap-6 md:gap-8">
         
-        {/* LEFT: CAMERA CONTAINER */}
-        <div className="w-full md:w-[55%] lg:w-[60%] flex flex-col gap-6 order-1 flex-1 md:flex-none justify-center md:justify-start">
-          {errorState ? (
-            <div className="w-full aspect-[4/3] bg-zinc-50 rounded-[24px] border border-red-100 flex flex-col items-center justify-center p-6 text-center">
-              <div className="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center mb-4">
-                <AlertCircle className="w-8 h-8 text-red-500" aria-hidden="true" />
-              </div>
-              <h2 className="text-xl font-bold text-zinc-900 mb-2">Analysis couldn't be completed</h2>
-              <p className="text-zinc-500 text-sm mb-8 max-w-[300px]">
-                Try scanning the product again with the label clearly visible.
-              </p>
-              <div className="flex gap-3">
-                <button 
-                  onClick={handleRetake}
-                  className="bg-zinc-900 text-white px-6 py-3 rounded-xl font-semibold hover:bg-zinc-800 transition-colors"
-                >
-                  Try Again
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="relative w-full h-full md:h-auto md:aspect-[4/3] min-h-[400px] md:min-h-0 md:rounded-[24px] overflow-hidden bg-transparent md:bg-[#111111]">
-              {imageFile ? (
-                <ImagePreview 
-                  imageFile={imageFile} 
-                  onRetake={handleRetake} 
-                  onAnalyze={handleAnalyze} 
-                  isAnalyzing={isAnalyzing}
-                />
-              ) : (
-                <CameraScanner onImageCaptured={handleImageCaptured} />
-              )}
-            </div>
-          )}
+        {/* Two-Column Section on Desktop, Stacked on Mobile */}
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-start w-full">
           
-          {/* ANALYZING STATUS */}
-          {isAnalyzing && (
-            <div className="w-full">
-              <AnalysisLoader imageFile={imageFile!} />
-            </div>
-          )}
-        </div>
+          {/* LEFT: CAMERA CONTAINER */}
+          <div className="w-full md:w-[60%] flex flex-col order-1">
+            {errorState ? (
+              <div className="w-full aspect-[4/3] bg-zinc-50 rounded-[18px] md:rounded-[24px] border border-red-100 flex flex-col items-center justify-center p-6 text-center">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-red-50 flex items-center justify-center mb-4">
+                  <AlertCircle className="w-6 h-6 md:w-8 md:h-8 text-red-500" aria-hidden="true" />
+                </div>
+                <h2 className="text-lg md:text-xl font-bold text-zinc-900 mb-2">Analysis couldn't be completed</h2>
+                <p className="text-zinc-500 text-sm mb-6 max-w-[300px]">
+                  Try scanning the product again with the label clearly visible.
+                </p>
+                <div className="flex gap-3 flex-wrap justify-center">
+                  <button 
+                    onClick={handleRetake}
+                    className="bg-zinc-900 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-xl font-semibold hover:bg-zinc-800 transition-colors text-sm md:text-base"
+                  >
+                    Try Again
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="relative w-full aspect-[4/3] md:aspect-[4/3] min-h-[400px] md:min-h-0 rounded-[18px] md:rounded-[24px] overflow-hidden bg-[#111111]">
+                {imageFile ? (
+                  <ImagePreview 
+                    imageFile={imageFile} 
+                    onRetake={handleRetake} 
+                    onAnalyze={handleAnalyze} 
+                    isAnalyzing={isAnalyzing}
+                  />
+                ) : (
+                  <CameraScanner onImageCaptured={handleImageCaptured} />
+                )}
+              </div>
+            )}
+          </div>
 
-        {/* RIGHT: INFO PANEL */}
-        <div className="hidden md:flex w-full md:w-[45%] lg:w-[40%] flex-col order-2">
-          <div className="w-full border border-zinc-200 rounded-[24px] overflow-hidden bg-white shadow-sm">
-            <div className="px-5 py-4 md:px-6 md:py-5 border-b border-zinc-100 flex items-center gap-3 bg-zinc-50/50">
-              <div className="p-2 bg-indigo-50 rounded-xl">
-                <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-indigo-600" aria-hidden="true" />
-              </div>
-              <h2 className="font-semibold text-zinc-900 text-[16px] md:text-[17px]">What TriggerLens looks for</h2>
-            </div>
-            
-            <div className="flex flex-col divide-y divide-zinc-100">
-              <div className="px-5 py-4 md:px-6 md:py-5 flex items-start gap-4">
-                <div className="p-2 bg-zinc-50 border border-zinc-100 rounded-lg shrink-0 mt-0.5">
-                  <Pill className="w-4 h-4 md:w-5 md:h-5 text-zinc-400" aria-hidden="true" />
+          {/* RIGHT: INFO PANEL */}
+          <div className="flex w-full md:w-[40%] flex-col order-2">
+            <div className="w-full border border-zinc-200 rounded-[18px] md:rounded-[24px] overflow-hidden bg-white shadow-sm">
+              <div className="px-4 py-3 md:px-6 md:py-5 border-b border-zinc-100 flex items-center gap-2 md:gap-3 bg-zinc-50/50">
+                <div className="p-1.5 md:p-2 bg-indigo-50 rounded-lg md:rounded-xl">
+                  <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-indigo-600" aria-hidden="true" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-zinc-900 text-[14px] md:text-[15px] mb-1">Medicine name</h3>
-                  <p className="text-[13px] md:text-[14px] text-zinc-500 leading-relaxed">Identify the visible product name</p>
-                </div>
+                <h2 className="font-semibold text-zinc-900 text-[15px] md:text-[17px]">What TriggerLens looks for</h2>
               </div>
               
-              <div className="px-5 py-4 md:px-6 md:py-5 flex items-start gap-4">
-                <div className="p-2 bg-zinc-50 border border-zinc-100 rounded-lg shrink-0 mt-0.5">
-                  <Activity className="w-4 h-4 md:w-5 md:h-5 text-zinc-400" aria-hidden="true" />
+              <div className="flex flex-col divide-y divide-zinc-100">
+                <div className="px-4 py-3 md:px-6 md:py-5 flex items-start gap-3 md:gap-4">
+                  <div className="p-1.5 md:p-2 bg-zinc-50 border border-zinc-100 rounded-lg shrink-0 mt-0.5">
+                    <Pill className="w-4 h-4 md:w-5 md:h-5 text-zinc-400" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-zinc-900 text-[14px] md:text-[15px] mb-0.5 md:mb-1">Medicine name</h3>
+                    <p className="text-[13px] md:text-[14px] text-zinc-500 leading-relaxed">Identify the visible product name</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-zinc-900 text-[14px] md:text-[15px] mb-1">Strength & dosage</h3>
-                  <p className="text-[13px] md:text-[14px] text-zinc-500 leading-relaxed">Read visible strength or dosage information</p>
+                
+                <div className="px-4 py-3 md:px-6 md:py-5 flex items-start gap-3 md:gap-4">
+                  <div className="p-1.5 md:p-2 bg-zinc-50 border border-zinc-100 rounded-lg shrink-0 mt-0.5">
+                    <Activity className="w-4 h-4 md:w-5 md:h-5 text-zinc-400" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-zinc-900 text-[14px] md:text-[15px] mb-0.5 md:mb-1">Strength & dosage</h3>
+                    <p className="text-[13px] md:text-[14px] text-zinc-500 leading-relaxed">Read visible strength or dosage information</p>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="px-5 py-4 md:px-6 md:py-5 flex items-start gap-4">
-                <div className="p-2 bg-zinc-50 border border-zinc-100 rounded-lg shrink-0 mt-0.5">
-                  <FileText className="w-4 h-4 md:w-5 md:h-5 text-zinc-400" aria-hidden="true" />
+                
+                <div className="px-4 py-3 md:px-6 md:py-5 flex items-start gap-3 md:gap-4">
+                  <div className="p-1.5 md:p-2 bg-zinc-50 border border-zinc-100 rounded-lg shrink-0 mt-0.5">
+                    <FileText className="w-4 h-4 md:w-5 md:h-5 text-zinc-400" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-zinc-900 text-[14px] md:text-[15px] mb-0.5 md:mb-1">Label details</h3>
+                    <p className="text-[13px] md:text-[14px] text-zinc-500 leading-relaxed">Check visible ingredients and warnings</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-zinc-900 text-[14px] md:text-[15px] mb-1">Label details</h3>
-                  <p className="text-[13px] md:text-[14px] text-zinc-500 leading-relaxed">Check visible ingredients and warnings</p>
-                </div>
-              </div>
-              
-              <div className="px-5 py-4 md:px-6 md:py-5 flex items-start gap-4">
-                <div className="p-2 bg-zinc-50 border border-zinc-100 rounded-lg shrink-0 mt-0.5">
-                  <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-zinc-400" aria-hidden="true" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-zinc-900 text-[14px] md:text-[15px] mb-1">Safety context</h3>
-                  <p className="text-[13px] md:text-[14px] text-zinc-500 leading-relaxed">Present clear information from visible evidence</p>
+                
+                <div className="px-4 py-3 md:px-6 md:py-5 flex items-start gap-3 md:gap-4">
+                  <div className="p-1.5 md:p-2 bg-zinc-50 border border-zinc-100 rounded-lg shrink-0 mt-0.5">
+                    <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-zinc-400" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-zinc-900 text-[14px] md:text-[15px] mb-0.5 md:mb-1">Safety context</h3>
+                    <p className="text-[13px] md:text-[14px] text-zinc-500 leading-relaxed">Present clear information from visible evidence</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* ANALYZING STATUS - Full width below the columns */}
+        {isAnalyzing && (
+          <div className="w-full">
+            <AnalysisLoader imageFile={imageFile!} />
+          </div>
+        )}
+
       </div>
 
       {/* Safety Footer */}
-      <div className="hidden md:flex flex-col items-center justify-center mt-12 mb-6 opacity-60">
+      <div className="flex flex-col items-center justify-center mt-12 mb-6 opacity-60">
         <div className="h-[1px] w-full max-w-[200px] bg-gradient-to-r from-transparent via-zinc-200 to-transparent mb-6"></div>
         <div className="flex items-center justify-center gap-2 text-zinc-500">
           <Shield className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />

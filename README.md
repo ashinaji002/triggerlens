@@ -1,32 +1,71 @@
-# React + TypeScript + Vite
+# TriggerLens
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+TriggerLens is a multimodal visual safety assistant and informational tool designed to help users identify and verify medical and packaged products efficiently, especially in high-cognitive-load situations.
 
-Currently, two official plugins are available:
+## Core Workflow
+- **Select**: Choose the category of product to scan (Medicine, Drink, Tobacco, Other).
+- **Scan**: Capture or upload an image of the product.
+- **Verify**: Review the AI-extracted product information, visible evidence, and safety context.
+- **Understand**: Access educational information extracted purely from visible evidence.
+- **Act**: Take informed steps based on the product's verified state.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Architecture
+TriggerLens is built on a modern stack:
+- **Framework**: React 19 + TypeScript + Vite
+- **Styling**: Tailwind CSS
+- **Routing**: React Router
+- **AI Integration**: `@google/genai` (Gemini API)
+- **Database/Auth**: Supabase
 
-## React Compiler
+## Gemini Integration
+TriggerLens uses the Gemini API (`gemini-3.5-flash`) for multimodal image analysis. When a user scans an image, the image is passed along with strict prompts to the Gemini model to identify the product and extract visible evidence from labels. The model response is constrained to a specific JSON schema, which is then validated at runtime using Zod to ensure type-safety.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Safety & Verification Design
+Safety is paramount. TriggerLens enforces a strict "Can't Verify" behavior:
+- If the visible evidence is insufficient, or the model cannot reliably identify the product, the system returns a `unverified` status.
+- The UI handles this state explicitly by showing a "Can't Verify" prompt and encouraging a rescan. 
+- TriggerLens **never** invents missing medical information or trusts invalid data payloads.
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Environment Setup
+Create a `.env` file in the root directory and populate it with the required keys. Do NOT commit secret values.
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_GEMINI_API_KEY=your_gemini_api_key
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Available Commands
+
+### Development
+```bash
+npm run dev
+```
+
+### Build
+```bash
+npm run build
+```
+
+### Testing Strategy
+TriggerLens employs strict unit, component, and E2E testing to ensure safety boundaries are met.
+- **Unit/Component Testing**: Vitest & React Testing Library
+- **E2E Testing**: Playwright
+
+To run unit and component tests:
+```bash
+npm run test
+```
+
+To run tests with a coverage report:
+```bash
+npm run test:coverage
+```
+
+To run the end-to-end (E2E) workflow tests:
+```bash
+npx playwright install
+npm run test:e2e
+```
+
+## Important Limitations
+TriggerLens identifies visible product information and is **not a substitute for professional medical advice**. Visual identification is informational and does not constitute a medical diagnosis. The application does not determine personal medical suitability, diagnose symptoms, or verify whether a product was consumed.
