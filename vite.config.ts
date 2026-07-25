@@ -50,6 +50,9 @@ export default defineConfig({
     tailwindcss(),
     apiDevPlugin()
   ],
+  build: {
+    outDir: 'build'
+  },
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
