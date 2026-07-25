@@ -9,7 +9,8 @@ export const Header: React.FC = () => {
         <Scan className="w-5 h-5" />
         <span>TriggerLens</span>
       </Link>
-      <div className="text-xs text-zinc-500 font-medium tracking-wide uppercase">
+      <div className="text-[10px] sm:text-xs text-zinc-600 font-semibold tracking-wide uppercase px-3 py-1.5 border border-zinc-200 rounded-full bg-zinc-50 flex items-center gap-1.5 shadow-sm">
+        <span className="text-zinc-400">✦</span>
         Powered by Gemini
       </div>
     </header>
