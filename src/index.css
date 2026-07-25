@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --color-border: #e5e7eb;
+}
+
+body {
+  @apply bg-white text-zinc-900 font-sans antialiased;
+}
+
+.scanner-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(161, 161, 170, 0.8);
+  box-shadow: 0 0 4px rgba(161, 161, 170, 0.5);
+  animation: scan 2s linear infinite;
+  z-index: 10;
+}
+
+@keyframes scan {
+  0% {
+    top: 5%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 95%;
+    opacity: 0;
+  }
+}
