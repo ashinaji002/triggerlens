@@ -24,7 +24,7 @@ Return a JSON object with the specified schema. For 'evidence', provide specific
 
   try {
     const response = await ai.models.generateContent({
-        model: 'gemini-1.5-flash',
+        model: 'gemini-3.5-flash',
         contents: [
             prompt,
             {
